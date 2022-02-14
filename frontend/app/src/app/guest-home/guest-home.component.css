@@ -1,0 +1,38 @@
+#header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.estate {
+    border: 2px solid lightgray;
+    margin: 10px;
+}
+
+.estate img {
+    height: 200px;
+    width: auto;
+    margin: 10px;
+}
+
+.image {
+    text-align: left;
+}
+.image img {
+    flex-shrink: 0;
+    width: 50%;
+}
+
+.about {
+    text-align: left;
+    font-size: 25px;
+}
+
+.about span {
+    color: green;
+}
+
+#estate_name {
+    text-align: center;
+    font-style: italic;
+    text-decoration: underline;
+}

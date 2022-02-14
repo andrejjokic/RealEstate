@@ -1,0 +1,25 @@
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Najnovije oglasene nekretnine:</h1><hr/>
+    </div>
+</div>
+
+<div class="row estate" *ngFor="let estate of newestEstates">
+    <div class="col-12" id="estate_name">
+        <h4>{{estate.name}}</h4>
+    </div>
+    
+    <div class="col-12 col-sm-7 col-md-9 image">
+        <img src={{randomImage(estate)}}><br>
+    </div>
+
+    <div class="col-12 col-sm-5 col-md-3 about">
+        <div>
+            Cena: <span>{{estate.price}}$</span>
+        </div>
+        <div>
+            GSP linije:
+            <span>{{estate.buses}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,198 @@
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Izmeni nekretninu:</h1><hr>
+    </div>
+</div>
+
+<form #f="ngForm" (ngSubmit)="editEstate()">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" class="form-control" ngModel name="ime" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="tip">Tip:</label>
+                <select id="tip" class="form-control" ngModel name="tip" required>
+                    <option value="stan">Stan</option>
+                    <option value="kuca">Kuca</option>
+                    <option value="vikendica">Vikendica</option>
+                    <option value="lokal">Lokal</option>
+                    <option value="magacin">Magacin</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="grad">Grad:</label>
+                <select id="grad" class="form-control" ngModel name="grad" required (change)="cityChange()">
+                    <option *ngFor="let city of allCities" [ngValue]="city.name">{{city.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="opstina">Opstina:</label>
+                <select id="opstina" class="form-control" ngModel name="opstina" required [disabled]="f.value.grad == ''" (change)="municipalityChange()">
+                    <option *ngFor="let municipality of selectedCityMunicipalities" [ngValue]="municipality.name">{{municipality.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="lokacija">Lokacija:</label>
+                <select id="lokacija" class="form-control" ngModel name="lokacija" required [disabled]="f.value.opstina == '' || f.value.grad == ''" (change)="locationChange()">
+                    <option *ngFor="let location of selectedMunicipalityLocations" [ngValue]="location.name">{{location.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="ulica">Ulica:</label>
+                <select id="ulica" class="form-control" ngModel name="ulica" required [disabled]="f.value.lokacija == '' || f.value.opstina == '' || f.value.grad == ''">
+                    <option *ngFor="let ulica of selectedLocationStreets" [ngValue]="ulica">{{ulica}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="kvadratura">Kvadratura(m&#178;):</label>
+                <input type="number" id="kvadratura" class="form-control" ngModel name="kvadratura" required min="0">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="soba">Broj soba:</label>
+                <select id="soba" class="form-control" ngModel name="soba" required>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4">4</option>
+                    <option value="4.5">4.5</option>
+                    <option value="5+">5+</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="cena">Cena($):</label>
+                <input type="number" id="cena" class="form-control" ngModel name="cena" required min="0">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="rezije">Iznos mesecnih rezija($):</label>
+                <input type="number" id="rezije" class="form-control" ngModel name="rezije" required min="0">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="sprat">Sprat:</label>
+                <input type="number" id="sprat" class="form-control" ngModel name="sprat" required min="0">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="ukupno_spratova">Ukupno spratova:</label>
+                <input type="number" id="ukupno_spratova" class="form-control" ngModel name="ukupno_spratova" required min="0">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="busevi">Autobusi:</label>
+                <select id="busevi" class="form-control" ngModel name="busevi" multiple size="4" [disabled]="f.value.grad == ''" required>
+                    <option *ngFor="let bus of selectedCityBuses" [ngValue]="bus">{{bus}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="karakteristike">Karakteristike:</label>
+                <select id="karakteristike" class="form-control" ngModel name="karakteristike" multiple size="4" required>
+                    <option value="terasa">Terasa</option>
+                    <option value="podrum">Podrum</option>
+                    <option value="internet">Internet</option>
+                    <option value="lodja">Lodja</option>
+                    <option value="garaza">Garaza</option>
+                    <option value="interfon">Interfon</option>
+                    <option value="franc_balkon">Franc. balkon</option>
+                    <option value="basta">Basta</option>
+                    <option value="telefon">Telefon</option>
+                    <option value="lift">Lift</option>
+                    <option value="klima">Klima</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="stanje">Stanje nekretnine:</label>
+                <select id="stanje" class="form-control" ngModel name="stanje" required>
+                    <option value="izvorno">Izvorno</option>
+                    <option value="renovirano">Renovirano</option>
+                    <option value="LUX">LUX</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="godina_izgradnje">Godina izgradnje:</label>
+                <input type="number" id="godina_izgradnje" class="form-control" ngModel name="godina_izgradnje" required min="1300">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="grejanje">Tip grejanja:</label>
+                <select id="grejanje" class="form-control" ngModel name="grejanje" required>
+                    <option value="cg">Centralno grejanje</option>
+                    <option value="eg">Etazno grejanje</option>
+                    <option value="ta">Termoakumulacione peci</option>
+                    <option value="gas">Gas</option>
+                    <option value="podno">Podno grejanje</option>
+                    <option value="pumpe">Toplotne pumpe</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="parking">Parking:</label>
+                <select id="parking" class="form-control" ngModel name="parking" required>
+                    <option value="1">Da</option>
+                    <option value="0">Ne</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="opis">Opis:</label>
+                <input type="text" id="opis" class="form-control" ngModel name="opis" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 text-center">
+            <button class="btn btn-dark" id="submit" [disabled]="!f.valid" type="submit" style="margin-top: 30px;">Edit</button>
+        </div>
+    </div>
+</form>

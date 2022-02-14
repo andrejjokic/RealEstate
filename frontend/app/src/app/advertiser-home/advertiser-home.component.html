@@ -1,0 +1,31 @@
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Vasi oglasi:</h1><hr/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 ad" *ngFor="let estate of myEstates">
+        <table>
+            <tr>
+                <td>Ime:</td>
+                <td>{{estate.name}}</td>
+            </tr>
+            <tr>
+                <td>Cena: </td>
+                <td>{{estate.price}}$</td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-dark" *ngIf="estate.sold == 0" (click)="sell(estate)">Prodato</button>
+                    <i *ngIf="estate.sold == 1" style="color: green; margin-right: 10px;">Prodato</i>
+                </td>
+                <td>
+                    <button class="btn btn-dark" *ngIf="canEdit(estate)" (click)="edit(estate)">Izmeni</button>
+                    <i *ngIf="!canEdit(estate)" style="color: green; margin-left: 10px;">Skoro izmenjeno</i>
+                </td>
+            </tr>
+        </table>
+        <hr/>
+    </div>
+</div>

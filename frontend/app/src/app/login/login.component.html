@@ -1,0 +1,32 @@
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Login:</h1><hr/>
+    </div>
+</div>
+
+<form #f="ngForm" (ngSubmit)="login()">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="korime">Korisnicko ime:</label>
+                <input type="text" id="korime" class="form-control" ngModel name="korime" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="lozinka">Lozinka:</label>
+                <input type="password" id="lozinka" class="form-control" ngModel name="lozinka" required>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="submit_row">
+        <div class="col-12">
+            <button class="btn btn-dark" id="submit" [disabled]="!f.valid" type="submit">Login</button>
+        </div>
+
+        <div class="col-12" style="margin-top: 15px">
+            <span class="error_message">{{login_message}}</span><br>
+        </div>
+    </div>
+</form>

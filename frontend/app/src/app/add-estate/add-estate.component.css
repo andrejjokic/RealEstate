@@ -1,0 +1,17 @@
+#header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+label {
+    font-size: 20px;
+}
+
+#submit {
+    margin-top: 20px;
+}
+
+.error_message {
+    font-size: 20px;
+    color: red;
+}

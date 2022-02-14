@@ -1,0 +1,22 @@
+#header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+label {
+    font-size: 20px;
+}
+
+#submit_row {
+    text-align: center;
+    padding: 20px;
+}
+
+#submit_row button {
+    width: 100px;
+}
+
+.error_message {
+    font-size: 20px;
+    color: red;
+}

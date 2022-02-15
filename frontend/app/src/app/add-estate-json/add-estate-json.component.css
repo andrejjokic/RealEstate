@@ -1,0 +1,13 @@
+#header {
+    margin-top: 25px;
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.error_message {
+    font-size: 20px;
+    color: red;
+}

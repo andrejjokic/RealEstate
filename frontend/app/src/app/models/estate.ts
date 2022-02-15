@@ -25,5 +25,13 @@ export class Estate {
     buses: Array<Number>;
     sold: number;
     lastModified: string;
-    advertiser: string;
+    advertiserFirstname: string;
+    advertiserLastname: string;
+    advertiserPhone: string;
+    advertiserLicense: string;
+    agencyName: string;
+    agencyPIB: string;
+    agencyCity: string;
+    agencyAddress: string;
+    agencyPhone: string;
 }

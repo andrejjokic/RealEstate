@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddEstateImagesComponent } from './add-estate-images/add-estate-images.component';
+import { AddEstateJsonComponent } from './add-estate-json/add-estate-json.component';
 import { AddEstateComponent } from './add-estate/add-estate.component';
 import { AdvertiserHomeComponent } from './advertiser-home/advertiser-home.component';
 import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'buyer', component: BuyerHomeComponent},
   {path: 'advertiser', component: AdvertiserHomeComponent},
   {path: 'addEstate', component: AddEstateComponent},
-  {path: 'editEstate', component: EditEstateComponent}
+  {path: 'editEstate', component: EditEstateComponent},
+  {path: 'addEstate/json', component: AddEstateJsonComponent},
+  {path: 'addEstate/images', component: AddEstateImagesComponent}
 ];
 
 @NgModule({

@@ -46,4 +46,15 @@ export class UserService {
 
     return this.http.post(`${this.uri}/changePassword`, payload);
   }
+
+  editAdvertiserInfo(username: string, email: string, phone: string, agency: string) {
+    let payload = {
+      username: username,
+      email: email,
+      phone: phone,
+      agency: agency
+    }
+
+    return this.http.post(`${this.uri}/editAdvertiserInfo`, payload);
+  }
 }

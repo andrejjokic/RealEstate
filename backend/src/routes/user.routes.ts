@@ -19,4 +19,8 @@ userRouter.route('/changePassword').post((req, resp) => {
     new UserController().changePassword(req, resp)
 })
 
+userRouter.route('/editAdvertiserInfo').post((req, resp) => {
+    new UserController().editAdvertiserInfo(req, resp)
+})
+
 export default userRouter;

@@ -29,4 +29,15 @@ export class UserController {
             else resp.json(user)
         })
     }
+
+    editAdvertiserInfo = (req: Request, resp: Response) => {
+        User.collection.updateOne({'username': req.body.username}, {$set: {
+            'email': req.body.email,
+            "phone": req.body.phone,
+            "agency": req.body.agency
+        }}, (err, user) => {
+            if (err) console.log(err)
+            else resp.json(user)
+        })
+    }
 }

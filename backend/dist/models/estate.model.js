@@ -29,7 +29,15 @@ let Estate = new Schema({
     buses: [{ type: Number }],
     sold: { type: Number },
     lastModified: { type: String },
-    advertiser: { type: String }
+    advertiserFirstname: { type: String },
+    advertiserLastname: { type: String },
+    advertiserPhone: { type: String },
+    advertiserLicense: { type: String },
+    agencyName: { type: String },
+    agencyPIB: { type: String },
+    agencyCity: { type: String },
+    agencyAddress: { type: String },
+    agencyPhone: { type: String }
 });
 exports.default = mongoose_1.default.model("Estate", Estate, "estates");
 //# sourceMappingURL=estate.model.js.map

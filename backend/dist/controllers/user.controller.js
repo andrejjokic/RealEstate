@@ -39,6 +39,18 @@ class UserController {
                     resp.json(user);
             });
         };
+        this.editAdvertiserInfo = (req, resp) => {
+            user_model_1.default.collection.updateOne({ 'username': req.body.username }, { $set: {
+                    'email': req.body.email,
+                    "phone": req.body.phone,
+                    "agency": req.body.agency
+                } }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(user);
+            });
+        };
     }
 }
 exports.UserController = UserController;

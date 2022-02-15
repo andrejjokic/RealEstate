@@ -4,8 +4,7 @@ import City from '../models/city.model';
 import Municipality from '../models/municipality.model';
 import Location from '../models/location.model';
 import Bus from '../models/bus.model';
-
-const ObjectId = require('mongodb').ObjectId;
+import Agency from '../models/agency.model';
 
 export class EstateController {
     getAllCities = (req: Request, resp: Response) => {
@@ -90,5 +89,12 @@ export class EstateController {
             if (err) console.log(err);
             else resp.json(estate);
         });
+    }
+
+    getAllAgencies = (req: Request, resp: Response) => {
+        Agency.find({}, (err, agencies) => {
+            if (err) console.log(err);
+            else resp.json(agencies);
+        })
     }
 }

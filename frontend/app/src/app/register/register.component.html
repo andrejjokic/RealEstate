@@ -80,9 +80,8 @@
                 <label for="agencija">Agencija:</label>
                 <select id="agencija" class="form-control" ngModel name="agencija">
                     <option value="">Nisam oglasivac</option>
-                    <option value="1">Agencija 1</option>
-                    <option value="2">Agencija 2</option>
-                    <option value="3">Agencija 3</option>
+                    <option value="-1">Samostalan oglasivac</option>
+                    <option *ngFor="let agency of agencies" [ngValue]="agency.name">{{agency.name}}</option>
                 </select>
             </div>
         </div>
@@ -90,7 +89,7 @@
         <div class="col-12 col-sm-6">
             <div class="form-group">
                 <label for="licenca">Licenca:</label>
-                <input type="text" id="licenca" class="form-control" ngModel name="licenca" [disabled]="f.value.agencija == ''">
+                <input type="text" id="licenca" class="form-control" ngModel name="licenca" [disabled]="f.value.agencija == '' || f.value.agencija == '-1'">
             </div>
         </div>
 

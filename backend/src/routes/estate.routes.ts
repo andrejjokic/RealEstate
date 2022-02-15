@@ -35,4 +35,8 @@ estateRouter.route('/editEstate').post((req, resp) => {
     new EstateController().editEstate(req, resp);
 })
 
+estateRouter.route('/getAllAgencies').get((req, resp) => {
+    new EstateController().getAllAgencies(req, resp);
+})
+
 export default estateRouter;

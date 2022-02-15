@@ -18,5 +18,8 @@ userRouter.route('/register').post((req, resp) => {
 userRouter.route('/changePassword').post((req, resp) => {
     new user_controller_1.UserController().changePassword(req, resp);
 });
+userRouter.route('/editAdvertiserInfo').post((req, resp) => {
+    new user_controller_1.UserController().editAdvertiserInfo(req, resp);
+});
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

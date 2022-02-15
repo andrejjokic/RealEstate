@@ -26,7 +26,15 @@ let Estate = new Schema({
   buses: [{ type: Number }],
   sold: { type: Number },
   lastModified: { type: String },
-  advertiser: { type: String }
+  advertiserFirstname: { type: String },
+  advertiserLastname: { type: String },
+  advertiserPhone: { type: String },
+  advertiserLicense: { type: String },
+  agencyName: { type: String },
+  agencyPIB: { type: String },
+  agencyCity: { type: String },
+  agencyAddress: { type: String },
+  agencyPhone: { type: String }
 });
   
   export default mongoose.model("Estate", Estate, "estates");

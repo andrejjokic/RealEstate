@@ -16,9 +16,7 @@ export class AdvertiserHomeComponent implements OnInit {
   ngOnInit(): void {
     this.loggedUser = JSON.parse(localStorage.getItem('user'));
 
-    this.estateService.getAllEstates().subscribe((estates: Estate[]) => {
-      this.myEstates = estates.filter(e => e.advertiser == this.loggedUser.username);
-    })
+    this.refresh();
   }
 
   loggedUser: User;
@@ -33,7 +31,7 @@ export class AdvertiserHomeComponent implements OnInit {
 
   refresh() {
     this.estateService.getAllEstates().subscribe((estates: Estate[]) => {
-      this.myEstates = estates.filter(e => e.advertiser == this.loggedUser.username);
+      this.myEstates = estates.filter(e => e.advertiserFirstname == this.loggedUser.firstname && e.advertiserLastname == this.loggedUser.lastname && e.advertiserPhone == this.loggedUser.phone);
     })
   }
 

@@ -3,6 +3,8 @@ import { User } from '../models/user';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { EstateService } from '../services/estate.service';
+import { Agency } from '../models/agency';
 
 @Component({
   selector: 'app-password-change',
@@ -13,14 +15,20 @@ export class PasswordChangeComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private estateService: EstateService) { }
 
   ngOnInit(): void {
     this.loggedUser = JSON.parse(localStorage.getItem('user'));
+
+    this.estateService.getAllAgencies().subscribe((agencies: Agency[]) => {
+      this.agencies = agencies;
+    })
   }
 
+  agencies: Agency[] = [];
   loggedUser: User;
   password_message: string = "";
+  message: string = "";
 
   getAgency() {
     return this.loggedUser.agency != '' ? this.loggedUser.agency : "Niste oglasivac";
@@ -44,5 +52,12 @@ export class PasswordChangeComponent implements OnInit {
         this.router.navigate(['login']);
       })
     }
+  }
+
+  edit() {
+    this.userService.editAdvertiserInfo(this.loggedUser.username, this.loggedUser.email, this.loggedUser.phone, this.loggedUser.agency).subscribe((user: User) => {
+      localStorage.setItem('user', JSON.stringify(this.loggedUser));
+      this.message = "Izmenjeno!";
+    })
   }
 }

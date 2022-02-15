@@ -9,7 +9,7 @@ const city_model_1 = __importDefault(require("../models/city.model"));
 const municipality_model_1 = __importDefault(require("../models/municipality.model"));
 const location_model_1 = __importDefault(require("../models/location.model"));
 const bus_model_1 = __importDefault(require("../models/bus.model"));
-const ObjectId = require('mongodb').ObjectId;
+const agency_model_1 = __importDefault(require("../models/agency.model"));
 class EstateController {
     constructor() {
         this.getAllCities = (req, resp) => {
@@ -100,6 +100,14 @@ class EstateController {
                     console.log(err);
                 else
                     resp.json(estate);
+            });
+        };
+        this.getAllAgencies = (req, resp) => {
+            agency_model_1.default.find({}, (err, agencies) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(agencies);
             });
         };
     }

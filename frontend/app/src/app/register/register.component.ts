@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { Agency } from '../models/agency';
+import { EstateService } from '../services/estate.service';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +14,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { 
+  constructor(private userService: UserService, private router: Router, private estateService: EstateService) { 
     this.captcha = '';
   }
 
   ngOnInit(): void {
+    this.estateService.getAllAgencies().subscribe((agencies: Agency[]) => {
+      this.agencies = agencies;
+    })
   }
 
   resolved(captchaResponse: string) {
@@ -26,6 +31,7 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('f') signupForm: NgForm;
   
+  agencies: Agency[] = [];
   imageOk: boolean = false;
   minImageDimension = 100;
   maxImageDimension = 300;

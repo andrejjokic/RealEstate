@@ -1,0 +1,17 @@
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Dodajte nekretninu pomocu JSON fajla:</h1><hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3>Izaberite slike:</h3>
+        <input type="file" required name="images" (change)="onFileSelected($event)" accept=".jpg, .png" multiple /> <br>
+        <button class="btn btn-dark" [disabled]="!imagesOk" (click)="add()">Add</button>
+    </div>
+
+    <div class="col-12">
+        <span class="error_message">{{message}}</span>
+    </div>
+</div>

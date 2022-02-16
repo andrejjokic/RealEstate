@@ -1,1 +1,131 @@
-<p>buyer-home works!</p>
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Oglasi:</h1><hr/>
+    </div>
+</div>
+
+<div class="row filters">
+    <div class="col-6 col-lg-3">
+        <span>Tip:</span>
+        <br>
+        <select [(ngModel)]="type" (change)="change()">
+            <option value="stan">Stan</option>
+            <option value="kuca">Kuca</option>
+            <option value="vikendica">Vikendica</option>
+            <option value="lokal">Lokal</option>
+            <option value="magacin">Magacin</option>
+        </select>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <span>Cena DO($):</span>
+        <br>
+        <input type="number" min="0" [(ngModel)]="price" (change)="change()">
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <span>Kvadratura OD(m&#178;):</span>
+        <br>
+        <input type="number" min="0" [(ngModel)]="area" (change)="change()">
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <span>Minimalan broj soba:</span>
+        <br>
+        <select style="width: 50%;" [(ngModel)]="rooms" (change)="change()">
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.5">2.5</option>
+            <option value="3">3</option>
+            <option value="3.5">3.5</option>
+            <option value="4">4</option>
+            <option value="4.5">4.5</option>
+            <option value="5">5+</option>
+          </select>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <span>Grad:</span><br>
+            <select [(ngModel)]="city" (change)="cityChange()" style="width: 50%;">
+                <option value="">Svi</option>
+                <option *ngFor="let city of allCities" [ngValue]="city.name">{{city.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <span>Opstina:</span><br>
+            <select [(ngModel)]="municipality" (change)="municipalityChange()" style="width: 50%;">
+                <option value="">Sve</option>
+                <option *ngFor="let municipality of selectedCityMunicipalities" [ngValue]="municipality.name" [disabled]="city == 'svi'">{{municipality.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <span>Lokacija:</span><br>
+            <select [(ngModel)]="location" (change)="locationChange()" style="width: 50%;">
+                <option value="">Sve</option>
+                <option *ngFor="let location of selectedMunicipalityLocations" [ngValue]="location.name" [disabled]="municipality == ''">{{location.name}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="filteredEstates.length > 0">
+    <div class="col-12 col-sm-6 ad" *ngFor="let estate of filteredEstates">
+        <table>
+            <tr>
+                <td><b>Ime:</b></td>
+                <td>{{estate.name}}</td>
+            </tr>
+            <tr>
+                <td><b>Cena:</b></td>
+                <td>{{estate.price}}$</td>
+            </tr>
+            <tr>
+                <td><b>Lokacija: </b></td>
+                <td>{{estate.city}} - {{estate.municipality}} - {{estate.location}}</td>
+            </tr>
+            <tr>
+                <td><b>Kvadratura:</b></td>
+                <td>{{estate.area}}m&#178;</td>
+            </tr>
+            <tr>
+                <td><b>Broj soba:</b></td>
+                <td>{{estate.rooms}}</td>
+            </tr>
+            <tr>
+                <td><b>Sprat:</b></td>
+                <td>{{estate.floor}}</td>
+            </tr>
+            <tr>
+                <td><b>Opis:</b></td>
+                <td>{{estate.description}}</td>
+            </tr>
+            <tr>
+                <td><b>Cena:</b></td>
+                <td>{{estate.price}}$</td>
+            </tr>
+            <tr>
+                <td><b>Prosek:</b></td>
+                <td>{{getAverageSquarePrice(estate)}} $/m&#178;</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <button id="details_button" class="btn btn-dark" (click)="details(estate)">Vidi vise</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row" *ngIf="filteredEstates.length == 0">
+    <div class="col-12">
+        <h4 style="margin-top: 20px; color: green;">Nema oglasa koji ispunjavaju filtere!</h4>
+    </div>
+</div>

@@ -11,7 +11,7 @@ export class Estate {
     street: string;
     price: number;
     area: number;
-    rooms: number;
+    rooms: string;
     floor: number;
     totalFloors: number;
     description: string;
@@ -21,7 +21,7 @@ export class Estate {
     parking: number;
     characteristics: Array<String>;
     monthlyFee: number;
-    images: Array<String>;
+    images: Array<string>;
     buses: Array<Number>;
     sold: number;
     lastModified: string;

@@ -41,7 +41,10 @@ let User = new Schema({
     },
     state: {
         type: String
-    }
+    },
+    favourites: [{
+        type: Number
+    }]
 })
 
 export default mongoose.model('User', User, 'users');

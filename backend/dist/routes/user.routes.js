@@ -21,5 +21,11 @@ userRouter.route('/changePassword').post((req, resp) => {
 userRouter.route('/editAdvertiserInfo').post((req, resp) => {
     new user_controller_1.UserController().editAdvertiserInfo(req, resp);
 });
+userRouter.route('/addToFavourites').post((req, resp) => {
+    new user_controller_1.UserController().addToFavourites(req, resp);
+});
+userRouter.route('/deleteFromFavourites').post((req, resp) => {
+    new user_controller_1.UserController().deleteFromFavourites(req, resp);
+});
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

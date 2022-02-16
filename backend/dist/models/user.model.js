@@ -44,7 +44,10 @@ let User = new Schema({
     },
     state: {
         type: String
-    }
+    },
+    favourites: [{
+            type: Number
+        }]
 });
 exports.default = mongoose_1.default.model('User', User, 'users');
 //# sourceMappingURL=user.model.js.map

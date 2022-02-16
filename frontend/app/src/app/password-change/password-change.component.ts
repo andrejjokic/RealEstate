@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { EstateService } from '../services/estate.service';
 import { Agency } from '../models/agency';
+import { Estate } from '../models/estate';
 
 @Component({
   selector: 'app-password-change',
@@ -23,9 +24,14 @@ export class PasswordChangeComponent implements OnInit {
     this.estateService.getAllAgencies().subscribe((agencies: Agency[]) => {
       this.agencies = agencies;
     })
+
+    this.estateService.getAllEstates().subscribe((estates: Estate[]) => {
+      this.estates = estates;
+    })
   }
 
   agencies: Agency[] = [];
+  estates: Estate[] = [];
   loggedUser: User;
   password_message: string = "";
   message: string = "";
@@ -58,6 +64,18 @@ export class PasswordChangeComponent implements OnInit {
     this.userService.editAdvertiserInfo(this.loggedUser.username, this.loggedUser.email, this.loggedUser.phone, this.loggedUser.agency).subscribe((user: User) => {
       localStorage.setItem('user', JSON.stringify(this.loggedUser));
       this.message = "Izmenjeno!";
+    })
+  }
+
+  getEstateName(estateId: number) {
+    if (this.estates.length == 0) return '';
+    return this.estates.find(e => e.id == estateId).name;
+  }
+
+  removeFromFavourites(estateId: number) {
+    this.userService.deleteFromFavourites(this.loggedUser.username, estateId).subscribe((user: User) => {
+      this.loggedUser.favourites.splice(this.loggedUser.favourites.indexOf(estateId), 1);
+      localStorage.setItem('user', JSON.stringify(this.loggedUser));
     })
   }
 }

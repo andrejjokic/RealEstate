@@ -18,6 +18,7 @@ import { EditEstateComponent } from './edit-estate/edit-estate.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddEstateJsonComponent } from './add-estate-json/add-estate-json.component';
 import { AddEstateImagesComponent } from './add-estate-images/add-estate-images.component';
+import { EstateDetailsComponent } from './estate-details/estate-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddEstateImagesComponent } from './add-estate-images/add-estate-images.
     EditEstateComponent,
     FooterComponent,
     AddEstateJsonComponent,
-    AddEstateImagesComponent
+    AddEstateImagesComponent,
+    EstateDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { AddEstateComponent } from './add-estate/add-estate.component';
 import { AdvertiserHomeComponent } from './advertiser-home/advertiser-home.component';
 import { BuyerHomeComponent } from './buyer-home/buyer-home.component';
 import { EditEstateComponent } from './edit-estate/edit-estate.component';
+import { EstateDetailsComponent } from './estate-details/estate-details.component';
 import { GuestHomeComponent } from './guest-home/guest-home.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'addEstate', component: AddEstateComponent},
   {path: 'editEstate', component: EditEstateComponent},
   {path: 'addEstate/json', component: AddEstateJsonComponent},
-  {path: 'addEstate/images', component: AddEstateImagesComponent}
+  {path: 'addEstate/images', component: AddEstateImagesComponent},
+  {path: 'estateDetails', component: EstateDetailsComponent}
 ];
 
 @NgModule({

@@ -15,7 +15,7 @@ let Estate = new Schema({
     street: { type: String },
     price: { type: Number },
     area: { type: Number },
-    rooms: { type: Number },
+    rooms: { type: String },
     floor: { type: Number },
     totalFloors: { type: Number },
     description: { type: String },

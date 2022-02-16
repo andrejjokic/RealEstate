@@ -12,4 +12,5 @@ export class User {
     city: string;
     imageFile: string;
     state: string;
+    favourites: number[];
 }

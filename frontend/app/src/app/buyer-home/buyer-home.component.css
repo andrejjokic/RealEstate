@@ -1,0 +1,22 @@
+#header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.ad {
+    font-size: 20px;
+    border: 1px solid lightgray;
+}
+
+.filters span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.filters {
+    margin-bottom: 20px;
+}
+
+#details_button {
+    margin: 5px;
+}

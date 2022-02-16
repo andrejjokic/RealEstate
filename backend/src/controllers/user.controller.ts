@@ -40,4 +40,18 @@ export class UserController {
             else resp.json(user)
         })
     }
+
+    addToFavourites = (req: Request, resp: Response) => {
+        User.collection.updateOne({'username': req.body.username}, {$push: {'favourites': req.body.estate}}, (err, user) => {
+            if (err) console.log(err)
+            else resp.json(user)
+        })
+    }
+
+    deleteFromFavourites = (req: Request, resp: Response) => {
+        User.collection.updateOne({'username': req.body.username}, {$pull: {'favourites': req.body.estate}}, (err, user) => {
+            if (err) console.log(err)
+            else resp.json(user)
+        })
+    }
 }

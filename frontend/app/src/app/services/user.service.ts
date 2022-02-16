@@ -32,7 +32,8 @@ export class UserService {
       agency: signupForm.value.agencija,
       license: signupForm.value.agencija == '' ? '' : signupForm.value.licenca,
       type: signupForm.value.agencija == '' ? 'buyer' : 'advertiser',
-      state: "new"
+      state: "new",
+      favourites: []
     }
 
     return this.http.post(`${this.uri}/register`, payload);
@@ -56,5 +57,21 @@ export class UserService {
     }
 
     return this.http.post(`${this.uri}/editAdvertiserInfo`, payload);
+  }
+
+  addToFavourites(username: string, estate: number) {
+    let payload = {
+      username: username,
+      estate: estate
+    }
+    return this.http.post(`${this.uri}/addToFavourites`, payload);
+  }
+
+  deleteFromFavourites(username: string, estate: number) {
+    let payload = {
+      username: username,
+      estate: estate
+    }
+    return this.http.post(`${this.uri}/deleteFromFavourites`, payload);
   }
 }

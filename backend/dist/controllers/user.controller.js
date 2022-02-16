@@ -51,6 +51,22 @@ class UserController {
                     resp.json(user);
             });
         };
+        this.addToFavourites = (req, resp) => {
+            user_model_1.default.collection.updateOne({ 'username': req.body.username }, { $push: { 'favourites': req.body.estate } }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(user);
+            });
+        };
+        this.deleteFromFavourites = (req, resp) => {
+            user_model_1.default.collection.updateOne({ 'username': req.body.username }, { $pull: { 'favourites': req.body.estate } }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(user);
+            });
+        };
     }
 }
 exports.UserController = UserController;

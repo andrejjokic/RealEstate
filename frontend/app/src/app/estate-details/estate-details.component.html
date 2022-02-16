@@ -1,0 +1,178 @@
+<div class="row" id="header">
+    <div class="col-12 col-md-6" id="name">
+        <h4>{{estate.name}}</h4>
+    </div>
+
+    <div class="col-12 col-md-6" id="location">
+        {{estate.city}} - {{estate.municipality}} - {{estate.location}} - {{estate.street}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-6" id="image">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" *ngFor="let image of estate.images; let i=index" (click)="imageClick()">
+                <div class="carousel-item active" [ngStyle]="{'display' : activeSlide[i] ? 'inline' : 'none'}">
+                    <img class="d-block w-100 center" src={{image}} style="height:300px; width:auto; max-width:650px;">
+                </div>
+            </div>
+        </div>
+
+        <ol class="carousel-indicators">
+            <li data-target="" data-slide-to="0" [ngClass]="activeSlide[i] ? 'active' : ''" *ngFor="let image of estate.images; let i=index"></li>
+        </ol>
+        <span>{{activeIndex + 1}}/{{estate.images.length}}</span>
+    </div>
+
+    <div class="col-12 col-lg-6" id="general">
+        <div class="square">
+            Tip: {{estate.type}}
+        </div>
+        <div class="square">
+            Kvadratura: {{estate.area}}m&#178;
+        </div>
+        <div class="square">
+            Soba: {{estate.rooms}}
+        </div>
+        <br><br>
+        <table class="about_table">
+            <tr>
+                <td><b>Oglasivac:</b></td>
+                <td>{{getAdvertiserName()}}</td>
+            </tr>
+            <tr>
+                <td><b>Godina izgradnje:</b></td>
+                <td>{{estate.constructionYear}}</td>
+            </tr>
+            <tr>
+                <td><b>Stanje nekretnine:</b></td>
+                <td>{{estate.state}}</td>
+            </tr>
+            <tr>
+                <td><b>Tip grejanja:</b></td>
+                <td>{{getHeatingType()}}</td>
+            </tr>
+        </table>
+
+        <table class="about_table">
+            <tr>
+                <td><b>Sprat:</b></td>
+                <td>{{estate.floor}}</td>
+            </tr>
+            <tr>
+                <td><b>Ukupno spratova:</b></td>
+                <td>{{estate.totalFloors}}</td>
+            </tr>
+            <tr>
+                <td><b>Parking:</b></td>
+                <td>{{getParking()}}</td>
+            </tr>
+        </table>
+        <br>
+        <div id="edit">
+            <div id="price">
+                <b>Cena: </b>
+                <span [class]="isMoreExpensive() ? 'red' : 'green'">{{estate.price}}$</span>
+            </div>
+            <div id="favourite">
+                <button class="btn btn-dark" (click)="addToFavourites()" [disabled]="inFavourites()">Dodaj u omiljene</button>
+            </div><br>
+            <span style="color: red">{{message}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="about">
+    <div class="col-12 col-lg-6" id="characteristics">
+        <h5>Karakteristike:</h5>
+        <table id="char_table">
+            <tr>
+                <td><input type="checkbox" disabled [checked]="checked('terasa')"> Terasa</td>
+                <td><input type="checkbox" disabled [checked]="checked('podrum')"> Podrum</td>
+                <td><input type="checkbox" disabled [checked]="checked('internet')"> Internet</td>
+                <td><input type="checkbox" disabled [checked]="checked('lodja')"> Lodja</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" disabled [checked]="checked('garaza')"> Garaza</td>
+                <td><input type="checkbox" disabled [checked]="checked('interfon')"> Intefon</td>
+                <td><input type="checkbox" disabled [checked]="checked('franc_balkon')"> Balkon</td>
+                <td><input type="checkbox" disabled [checked]="checked('basta')"> Basta</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" disabled [checked]="checked('klima')"> Klima</td>
+                <td><input type="checkbox" disabled [checked]="checked('telefon')"> Telefon</td>
+                <td><input type="checkbox" disabled [checked]="checked('lift')"> Lift</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-12 col-lg-6" id="description">
+        <h5>Opis:</h5>
+        <p>{{estate.description}}</p>
+    </div>
+</div>
+
+<div class="row" id="contact">
+    <div class="col-12">
+        <h5>Kontakt:</h5>
+    </div>
+    
+    <div class="col-12 col-md-6 contact-info" *ngIf="estate.agencyName != ''">
+        <table>
+            <tr>
+                <td>Agencija:</td>
+                <td>&nbsp;{{estate.agencyName}}</td>
+            </tr>
+            <tr>
+                <td>Grad:</td>
+                <td>{{estate.agencyCity}}</td>
+            </tr>
+            <tr>
+                <td>Adresa:</td>
+                <td>{{estate.agencyAddress}}</td>
+            </tr>
+            <tr>
+                <td>PIB:</td>
+                <td>{{estate.agencyPIB}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="col-12 col-md-6 contact-info" *ngIf="estate.agencyName != ''">
+        <table>
+            <tr>
+                <td>Agent:</td>
+                <td>{{estate.advertiserFirstname}} {{estate.advertiserLastname}}</td>
+            </tr>
+            <tr>
+                <td>Licenca:</td>
+                <td>&nbsp;{{estate.advertiserLicense}}</td>
+            </tr>
+            <tr>
+                <td>Telefon:</td>
+                <td>
+                    &nbsp;
+                    <button class="btn btn-dark" (click)="show()" *ngIf="!showPhone">+</button>
+                    <i *ngIf="showPhone"> {{estate.advertiserPhone}}</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-12" *ngIf="estate.agencyName == ''">
+        <table>
+            <tr>
+                <td>Agent:</td>
+                <td>{{estate.advertiserFirstname}} {{estate.advertiserLastname}}</td>
+            </tr>
+            <tr>
+                <td>Telefon:</td>
+                <td>
+                    &nbsp;
+                    <button class="btn btn-dark" (click)="show()" *ngIf="!showPhone">+</button>
+                    <i *ngIf="showPhone"> {{estate.advertiserPhone}}</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -23,4 +23,12 @@ userRouter.route('/editAdvertiserInfo').post((req, resp) => {
     new UserController().editAdvertiserInfo(req, resp)
 })
 
+userRouter.route('/addToFavourites').post((req, resp) => {
+    new UserController().addToFavourites(req, resp)
+})
+
+userRouter.route('/deleteFromFavourites').post((req, resp) => {
+    new UserController().deleteFromFavourites(req, resp)
+})
+
 export default userRouter;

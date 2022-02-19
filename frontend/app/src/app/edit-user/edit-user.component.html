@@ -1,0 +1,99 @@
+<div class="row header">
+    <div class="col-12">
+        <h3>Izmeni korisnika:</h3><hr>
+    </div>
+</div>
+
+<form #f="ngForm" (ngSubmit)="edit()">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" class="form-control" ngModel name="ime" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="surname">Prezime:</label>
+                <input type="text" id="prezime" class="form-control" ngModel name="prezime" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="korime">Korisnicko ime:</label>
+                <input type="text" id="korime" class="form-control" ngModel name="korime" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" ngModel name="email" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="lozinka">Lozinka:</label>
+                <input type="password" id="lozinka" class="form-control" ngModel name="lozinka" required (change)="passwordChange()">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="password">Potvrdi lozinku:</label>
+                <input type="password" id="potvrda_lozinke" class="form-control" ngModel name="potvrda_lozinke" required (change)="passwordChange()">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="grad">Grad:</label>
+                <input type="text" id="grad" class="form-control" ngModel name="grad" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="datum_rodjenja">Datum rodjenja:</label>
+                <input type="date" id="datum_rodjenja" class="form-control" ngModel name="datum_rodjenja" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="agencija">Agencija:</label>
+                <select id="agencija" class="form-control" ngModel name="agencija">
+                    <option value="">Nisam oglasivac</option>
+                    <option value="-1">Samostalan oglasivac</option>
+                    <option *ngFor="let agency of agencies" [ngValue]="agency.name">{{agency.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="licenca">Licenca:</label>
+                <input type="text" id="licenca" class="form-control" ngModel name="licenca" [disabled]="f.value.agencija == '' || f.value.agencija == '-1'">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="telefon">Telefon:</label>
+                <input type="tel" id="telefon" class="form-control" ngModel name="telefon" required>
+            </div>
+        </div>
+
+        <div class="col-12" style="margin-top: 10px;">
+            <button class="btn btn-dark" id="submit" [disabled]="!f.valid || !passwordOk()" type="submit">Edit</button>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <span class="error_message">{{password_message}}</span><br>
+            <span class="error_message">{{register_message}}</span>
+        </div>
+    </div>
+</form>

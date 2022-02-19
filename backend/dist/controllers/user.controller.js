@@ -67,6 +67,52 @@ class UserController {
                     resp.json(user);
             });
         };
+        this.getAllUsers = (req, resp) => {
+            user_model_1.default.find({}, (err, users) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(users);
+            });
+        };
+        this.acceptUser = (req, resp) => {
+            user_model_1.default.collection.updateOne({ 'username': req.body.username }, { $set: { 'state': 'registered' } }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(user);
+            });
+        };
+        this.deleteUser = (req, resp) => {
+            user_model_1.default.collection.deleteOne({ 'username': req.body.username }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(user);
+            });
+        };
+        this.editUser = (req, resp) => {
+            user_model_1.default.collection.updateOne({ 'username': req.body.prevUsername }, {
+                $set: {
+                    'username': req.body.username,
+                    'firstname': req.body.firstname,
+                    'lastname': req.body.lastname,
+                    'email': req.body.email,
+                    'password': req.body.password,
+                    'city': req.body.city,
+                    'area': req.body.area,
+                    'birthday': req.body.birthday,
+                    'phone': req.body.phone,
+                    'agency': req.body.agency,
+                    'license': req.body.license
+                }
+            }, (err, user) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(user);
+            });
+        };
     }
 }
 exports.UserController = UserController;

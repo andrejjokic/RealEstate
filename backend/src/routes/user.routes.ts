@@ -31,4 +31,20 @@ userRouter.route('/deleteFromFavourites').post((req, resp) => {
     new UserController().deleteFromFavourites(req, resp)
 })
 
+userRouter.route('/getAllUsers').get((req, resp) => {
+    new UserController().getAllUsers(req, resp)
+})
+
+userRouter.route('/acceptUser').post((req, resp) => {
+    new UserController().acceptUser(req, resp)
+})
+
+userRouter.route('/deleteUser').post((req, resp) => {
+    new UserController().deleteUser(req, resp)
+})
+
+userRouter.route('/editUser').post((req, resp) => {
+    new UserController().editUser(req, resp)
+})
+
 export default userRouter;

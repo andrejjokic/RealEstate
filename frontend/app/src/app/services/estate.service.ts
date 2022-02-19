@@ -72,4 +72,15 @@ export class EstateService {
     return this.http.get(`${this.uri}/getAllAgencies`)
   }
 
+  addAgency(form: NgForm) {
+    let payload = {
+      name: form.value.naziv,
+      pib: form.value.pib,
+      city: form.value.grad,
+      address: form.value.adresa,
+      phone: form.value.telefon
+    }
+
+    return this.http.post(`${this.uri}/addAgency`, payload);
+  }
 }

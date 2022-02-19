@@ -27,5 +27,17 @@ userRouter.route('/addToFavourites').post((req, resp) => {
 userRouter.route('/deleteFromFavourites').post((req, resp) => {
     new user_controller_1.UserController().deleteFromFavourites(req, resp);
 });
+userRouter.route('/getAllUsers').get((req, resp) => {
+    new user_controller_1.UserController().getAllUsers(req, resp);
+});
+userRouter.route('/acceptUser').post((req, resp) => {
+    new user_controller_1.UserController().acceptUser(req, resp);
+});
+userRouter.route('/deleteUser').post((req, resp) => {
+    new user_controller_1.UserController().deleteUser(req, resp);
+});
+userRouter.route('/editUser').post((req, resp) => {
+    new user_controller_1.UserController().editUser(req, resp);
+});
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

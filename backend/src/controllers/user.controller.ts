@@ -54,4 +54,46 @@ export class UserController {
             else resp.json(user)
         })
     }
+
+    getAllUsers = (req: Request, resp: Response) => {
+        User.find({}, (err, users) => {
+            if (err) console.log(err)
+            else resp.json(users);
+        })
+    }
+
+    acceptUser = (req: Request, resp: Response) => {
+        User.collection.updateOne({'username': req.body.username}, {$set: {'state': 'registered'}}, (err, user) => {
+            if (err) console.log(err)
+            else resp.json(user);
+        })
+    }
+
+    deleteUser = (req: Request, resp: Response) => {
+        User.collection.deleteOne({'username': req.body.username}, (err, user) => {
+            if (err) console.log(err)
+            else resp.json(user);
+        })
+    }
+
+    editUser = (req: Request, resp: Response) => {
+        User.collection.updateOne({'username': req.body.prevUsername}, {
+            $set: {
+                'username': req.body.username,
+                'firstname': req.body.firstname,
+                'lastname': req.body.lastname,
+                'email': req.body.email,
+                'password': req.body.password,
+                'city': req.body.city,
+                'area': req.body.area,
+                'birthday': req.body.birthday,
+                'phone': req.body.phone,
+                'agency': req.body.agency,
+                'license': req.body.license
+            }
+        }, (err, user) => {
+            if (err) console.log(err);
+            else resp.json(user);
+        });
+    }
 }

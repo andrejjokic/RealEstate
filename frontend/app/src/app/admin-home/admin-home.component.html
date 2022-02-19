@@ -1,0 +1,73 @@
+<div class="row header">
+    <div class="col-12">
+        <h3>Registracije korisnika:</h3><hr>
+    </div>
+</div>
+
+<div class="row" *ngIf="getNewUsers().length > 0">
+    <div class="col-12">
+        <table>
+            <tr>
+                <th>Ime i Prezime</th>
+                <th>Korisnicko ime</th>
+                <th>Email</th>
+                <th>Tip</th>
+            </tr>
+            <tr *ngFor="let user of getNewUsers()">
+                <td>{{user.firstname}} {{user.lastname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{getType(user)}}</td>
+                <td>
+                    <button class="btn btn-dark" (click)="acceptUser(user)">Prihvati</button>
+                </td>
+                <td>
+                    <button class="btn btn-dark" (click)="rejectUser(user)">Odbij</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row" *ngIf="getNewUsers().length == 0">
+    <div class="col-12">
+        <i>Nema novih zahteva!</i>
+    </div>
+</div>
+
+<div class="row header">
+    <div class="col-12">
+        <h3>Korisnici:</h3><hr>
+    </div>
+</div>
+
+<div class="row" *ngIf="getRegisteredUsers().length > 0">
+    <div class="col-12">
+        <table>
+            <tr>
+                <th>Ime i Prezime</th>
+                <th>Korisnicko ime</th>
+                <th>Email</th>
+                <th>Tip</th>
+            </tr>
+            <tr *ngFor="let user of getRegisteredUsers()">
+                <td>{{user.firstname}} {{user.lastname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{getType(user)}}</td>
+                <td>
+                    <button class="btn btn-dark" (click)="editUser(user)">Izmeni</button>
+                </td>
+                <td>
+                    <button class="btn btn-dark" (click)="rejectUser(user)">Obrisi</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row" *ngIf="getRegisteredUsers().length == 0">
+    <div class="col-12">
+        <i>Nema korisnika!</i>
+    </div>
+</div>

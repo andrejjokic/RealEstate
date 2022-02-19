@@ -19,6 +19,11 @@ import { FooterComponent } from './footer/footer.component';
 import { AddEstateJsonComponent } from './add-estate-json/add-estate-json.component';
 import { AddEstateImagesComponent } from './add-estate-images/add-estate-images.component';
 import { EstateDetailsComponent } from './estate-details/estate-details.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AdminAgencyComponent } from './admin-agency/admin-agency.component';
+import { AdminLocationComponent } from './admin-location/admin-location.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { EstateDetailsComponent } from './estate-details/estate-details.componen
     FooterComponent,
     AddEstateJsonComponent,
     AddEstateImagesComponent,
-    EstateDetailsComponent
+    EstateDetailsComponent,
+    AdminHomeComponent,
+    AdminAgencyComponent,
+    AdminLocationComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

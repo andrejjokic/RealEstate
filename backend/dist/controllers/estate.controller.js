@@ -110,6 +110,14 @@ class EstateController {
                     resp.json(agencies);
             });
         };
+        this.addAgency = (req, resp) => {
+            agency_model_1.default.collection.insertOne(req.body, (err, agency) => {
+                if (err)
+                    console.log(err);
+                else
+                    resp.json(agency);
+            });
+        };
     }
 }
 exports.EstateController = EstateController;

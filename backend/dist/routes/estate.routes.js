@@ -33,5 +33,8 @@ estateRouter.route('/editEstate').post((req, resp) => {
 estateRouter.route('/getAllAgencies').get((req, resp) => {
     new estate_controller_1.EstateController().getAllAgencies(req, resp);
 });
+estateRouter.route('/addAgency').post((req, resp) => {
+    new estate_controller_1.EstateController().addAgency(req, resp);
+});
 exports.default = estateRouter;
 //# sourceMappingURL=estate.routes.js.map

@@ -1,0 +1,48 @@
+<div class="row" id="header">
+    <div class="col-12">
+        <h1>Dodaj agenciju:</h1><hr/>
+    </div>
+</div>
+
+<form #f="ngForm" (ngSubmit)="add()">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="naziv">Naziv:</label>
+                <input type="text" id="naziv" class="form-control" ngModel name="naziv" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="pib">PIB:</label>
+                <input type="text" id="pib" class="form-control" ngModel name="pib" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="grad">Grad:</label>
+                <input type="text" id="grad" class="form-control" ngModel name="grad" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="adresa">Adresa:</label>
+                <input type="text" id="adresa" class="form-control" ngModel name="adresa" required>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+                <label for="telefon">Kontakt telefon:</label>
+                <input type="text" id="telefon" class="form-control" ngModel name="telefon" required>
+            </div>
+        </div>
+
+        <div class="col-12" style="margin-top: 15px;">
+            <button class="btn btn-dark" id="submit" [disabled]="!f.valid" type="submit">Dodaj</button>
+        </div>
+    </div>
+</form>

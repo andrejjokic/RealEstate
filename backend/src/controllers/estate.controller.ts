@@ -97,4 +97,11 @@ export class EstateController {
             else resp.json(agencies);
         })
     }
+
+    addAgency = (req: Request, resp: Response) => {
+        Agency.collection.insertOne(req.body, (err, agency) => {
+            if (err) console.log(err);
+            else resp.json(agency);
+        })
+    }
 }

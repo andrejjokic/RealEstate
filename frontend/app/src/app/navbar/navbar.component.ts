@@ -30,4 +30,9 @@ export class NavbarComponent implements OnInit {
   logout() {
     localStorage.removeItem('user');
   }
+
+  isUserAdmin() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    return user && user.type == 'admin';
+  }
 }
